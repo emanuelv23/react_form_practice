@@ -20,7 +20,6 @@ const DatosEmpleadoForm = () => {
 
     useEffect(() => {
         setDatosEmpleado({
-            ...datosEmpleado,
             nombre: informacionBasica?.nombre,
             apellido: informacionBasica?.apellido,
             ciudad: ubicacion?.ciudad,
