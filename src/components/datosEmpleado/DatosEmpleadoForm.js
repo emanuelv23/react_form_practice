@@ -11,29 +11,21 @@ const DatosEmpleadoForm = () => {
         ciudad: "",
         provincia: "",
     })
-    const [datosEmpleado, setDatosEmpleado] = useState({
+    /*const [datosEmpleado, setDatosEmpleado] = useState({
         nombre: "",
         apellido: "",
         ciudad: "",
         provincia: ""
-    });
-
-    useEffect(() => {
-        setDatosEmpleado({
-            nombre: informacionBasica?.nombre,
-            apellido: informacionBasica?.apellido,
-            ciudad: ubicacion?.ciudad,
-            provincia: ubicacion?.provincia,
-        });
-    }, [informacionBasica, ubicacion])
+    });*/
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(datosEmpleado)
+        // esto lo puedo usar para enviar a la próxima pagina
+        console.log({...informacionBasica, ...ubicacion})
     }
 
-   return (
+    return (
         <form onSubmit={handleSubmit}>
             <InformacionBasica informacionBasica={informacionBasica} setInformacionBasica={setInformacionBasica} />
             <Ubicacion ubicacion={ubicacion} setUbicacion={setUbicacion} />

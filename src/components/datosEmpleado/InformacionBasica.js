@@ -10,6 +10,7 @@ const InformacionBasica = ({informacionBasica, setInformacionBasica}) => {
 
     return (
         <Fragment>
+            <h1>Información Basica</h1>
             <label>Nombre</label>
             <input type="text" name="nombre" placeholder="Nombre" value={informacionBasica.nombre} onChange={handleChange} />
             <label>Apellido</label>
