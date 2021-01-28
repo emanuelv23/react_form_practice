@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import InformacionBasica from "./InformacionBasica"
 import Ubicacion from "./Ubicacion"
 
@@ -11,12 +11,6 @@ const DatosEmpleadoForm = () => {
         ciudad: "",
         provincia: "",
     })
-    /*const [datosEmpleado, setDatosEmpleado] = useState({
-        nombre: "",
-        apellido: "",
-        ciudad: "",
-        provincia: ""
-    });*/
 
     const handleSubmit = (e) => {
         e.preventDefault();

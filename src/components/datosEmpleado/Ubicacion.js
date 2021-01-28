@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react'
+import Provincias from "../select/Provincias"
 
 const Ubicacion = ({ubicacion, setUbicacion}) => {
     const handleChange = (e) => {
@@ -12,9 +13,11 @@ const Ubicacion = ({ubicacion, setUbicacion}) => {
         <Fragment>
             <h1>Ubiacion</h1>
             <label>Provincia</label>
-            <input type="text" name="provincia" placeholder="provincia" value={ubicacion.provincia} onChange={handleChange}/>
+            <Provincias />
             <label>Ciudad</label>
             <input type="text" name="ciudad" placeholder="Ciudad" value={ubicacion.ciudad} onChange={handleChange}/>
+
+
         </Fragment>
     )
 }
