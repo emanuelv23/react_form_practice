@@ -1,19 +1,12 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment} from 'react'
 
-const InformacionBasica = (props) => {
-    const [informacionBasica, setInformacionBasica] = useState({
-        nombre: "",
-        apellido: ""
-    });
-
+const InformacionBasica = ({informacionBasica, setInformacionBasica}) => {
     const handleChange = (e) => {
         setInformacionBasica({
             ...informacionBasica,
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value
         });
     }
-
-    props.informacionBasica(informacionBasica)
 
     return (
         <Fragment>

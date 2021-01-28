@@ -1,19 +1,12 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment} from 'react'
 
-const Ubicacion = (props) => {
-    const [ubicacion, setUbicacion] = useState({
-        ciudad: "",
-        provincia: ""
-    })
-
+const Ubicacion = ({ubicacion, setUbicacion}) => {
     const handleChange = (e) => {
         setUbicacion({
             ...ubicacion,
             [e.target.name]: e.target.value
         })
     }
-
-    props.ubicacion(ubicacion)
 
     return (
         <Fragment>
