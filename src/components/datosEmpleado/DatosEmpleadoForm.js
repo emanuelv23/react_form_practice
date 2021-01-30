@@ -7,26 +7,24 @@ const DatosEmpleadoForm = () => {
         nombre: "",
         apellido: "",
     })
-    const [ubicacion, setUbicacion] = useState({
-        ciudad: "",
+    const [provinciaNombre, setProvinciaNombre] = useState({
         provincia: "",
     })
-    const [provinciaNombre, setProvinciaNombre] = useState({
-        nombre: ""
+    const [ciudadNombre, setCiudadNombre] = useState({
+        ciudad: "",
     })
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         // esto lo puedo usar para enviar a la próxima pagina
-        console.log(provinciaNombre)
-        console.log({...informacionBasica, ...ubicacion})
+        console.log({...informacionBasica, ...provinciaNombre, ...ciudadNombre})
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <InformacionBasica informacionBasica={informacionBasica} setInformacionBasica={setInformacionBasica} />
-            <Ubicacion ubicacion={ubicacion} setUbicacion={setUbicacion} setProvinciaNombre={setProvinciaNombre}/>
+            <Ubicacion setProvinciaNombre={setProvinciaNombre} setCiudadNombre={setCiudadNombre}/>
             <button type="submit">Crear</button>
         </form>
     )

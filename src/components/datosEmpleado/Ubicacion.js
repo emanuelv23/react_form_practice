@@ -2,15 +2,8 @@ import React, {Fragment, useState} from 'react'
 import Provincias from "../select/Provincias"
 import Ciudades from "../select/Ciudades"
 
-const Ubicacion = ({ubicacion, setUbicacion, setProvinciaNombre}) => {
+const Ubicacion = ({setProvinciaNombre, setCiudadNombre}) => {
     const [provinciaId, setProvinciaId] = useState("")
-
-    const handleChange = (e) => {
-        setUbicacion({
-            ...ubicacion,
-            [e.target.name]: e.target.value
-        })
-    }
 
     return (
         <Fragment>
@@ -18,7 +11,7 @@ const Ubicacion = ({ubicacion, setUbicacion, setProvinciaNombre}) => {
             <label>Provincia</label>
             <Provincias setProvinciaId={setProvinciaId} setProvinciaNombre={setProvinciaNombre}/>
             <label>Ciudad</label>
-            <Ciudades provinciaId={provinciaId} />
+            <Ciudades provinciaId={provinciaId} setCiudadNombre={setCiudadNombre}/>
         </Fragment>
     )
 }

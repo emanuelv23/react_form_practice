@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 
-//const Ciudades = ({provinciaId, setCiudadNombre}) => {
-const Ciudades = ({provinciaId}) => {
+const Ciudades = ({provinciaId, setCiudadNombre}) => {
     const [ciudades, setCiudades] = useState([])
 
     useEffect( () => {
+        //TODO: Manejar errores en apiCiudades
         const apiCiudades = async () => {
+            //TODO: Validar parametros de envío a api.
             const urlCiudades = `https://apis.datos.gob.ar/georef/api/municipios?provincia=${provinciaId}&campos=id,nombre&max=100`
             const respuesta = await axios.get(urlCiudades)
 
@@ -15,29 +16,20 @@ const Ciudades = ({provinciaId}) => {
         apiCiudades()
     }, [provinciaId])
 
-    const nombreCiudad = (ciudadId) => {
-        let resultado = "";
-
+    const handleChange = (e) => {
         ciudades.map((ciudad) => {
-            if (ciudad.id === ciudadId) {
-                resultado = ciudad.nombre
+            if (ciudad.id === e.target.value) {
+                setCiudadNombre({
+                    ciudad: ciudad.nombre,
+                })
             }
-
-            return resultado
         })
     }
-
-    const handleChange = (e) => {
-        /*setCiudadNombre({
-            nombre: nombreCiudad(e.target.value)
-        })*/
-        console.log(e.target.value)
-    }
-
+    //TODO: Deshabilitar select cuando provincia seleccionada sea Ciudad Autónoma de Buenos Aires (buscar ProvinciaId)
     return (
-        <select>
+        <select onChange={handleChange}>
             {ciudades.map((ciudad) => (
-                <option key={ciudad.id} value={ciudad.id} onChange={handleChange}>{ciudad.nombre}</option>
+                <option key={ciudad.id} value={ciudad.id}>{ciudad.nombre}</option>
             ))}
         </select>
     )

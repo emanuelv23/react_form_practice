@@ -3,37 +3,46 @@ import axios from "axios";
 
 const Provincias = ({setProvinciaId, setProvinciaNombre}) => {
     const [provincias, setProvincias] = useState([])
-    //const [idProvinciaSeleccionada, setIdProvinciaSeleccionada] = useState("")
-    /*const [idProvinciaSeleccionada, setIdProvinciaSeleccionada] = useState({
-        id: "",
-        nombre: "",
-    })*/
 
     useEffect(() => {
         const apiProvincias = async () => {
-            const urlProvincias = "https://apis.datos.gob.ar/georef/api/provincias"
-            const respuesta = await axios.get(urlProvincias)
+            try {
+                const urlProvincias = "https://apis.datos.gob.ar/georef/api/provincias"
+                let response = await axios.get(urlProvincias)
 
-            setProvincias(respuesta.data.provincias)
+                setProvincias(response.data.provincias);
+            } catch (error) {
+                if (error.response) {
+                    console.log("response error: ", error.response.data);
+                    console.log("response error: ", error.response.status);
+                    console.log("response error: ", error.response.headers);
+                } else if (error.request) {
+                    console.log("request error: ", error.request);
+                }
+
+            }
         }
         apiProvincias()
     }, [])
 
     const nombreProvincia = (provinciaId) => {
-        let resultado = ""
+        // let resultado = ""
 
-        provincias.map((provincia) => {
+        let provincia = provincias.filter(provincia => provincia.id === provinciaId)
+
+        /*provincias.map((provincia) => {
             if (provincia.id === provinciaId) {
                 resultado = provincia.nombre
             }
-        })
-
-        return resultado
+        })*/
+        console.log("provincia:", provincia)
+        //return resultado
+        return provincia[0].nombre
     }
     const handleChange = (e) => {
         setProvinciaId(e.target.value);
         setProvinciaNombre({
-            nombre: nombreProvincia(e.target.value)
+            provincia: nombreProvincia(e.target.value)
         });
     }
 
