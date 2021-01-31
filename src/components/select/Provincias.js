@@ -13,30 +13,19 @@ const Provincias = ({setProvinciaId, setProvinciaNombre}) => {
                 setProvincias(response.data.provincias);
             } catch (error) {
                 if (error.response) {
-                    console.log("response error: ", error.response.data);
-                    console.log("response error: ", error.response.status);
-                    console.log("response error: ", error.response.headers);
+                    console.log("apiProvincias response error: ", error.response.data);
+                    console.log("apiProvincias response error: ", error.response.status);
+                    console.log("apiProvincias response error: ", error.response.headers);
                 } else if (error.request) {
-                    console.log("request error: ", error.request);
+                    console.log("apiProvincias request error: ", error.request);
                 }
-
             }
         }
         apiProvincias()
     }, [])
 
     const nombreProvincia = (provinciaId) => {
-        // let resultado = ""
-
         let provincia = provincias.filter(provincia => provincia.id === provinciaId)
-
-        /*provincias.map((provincia) => {
-            if (provincia.id === provinciaId) {
-                resultado = provincia.nombre
-            }
-        })*/
-        console.log("provincia:", provincia)
-        //return resultado
         return provincia[0].nombre
     }
     const handleChange = (e) => {

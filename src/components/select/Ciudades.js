@@ -5,24 +5,30 @@ const Ciudades = ({provinciaId, setCiudadNombre}) => {
     const [ciudades, setCiudades] = useState([])
 
     useEffect( () => {
-        //TODO: Manejar errores en apiCiudades
         const apiCiudades = async () => {
-            //TODO: Validar parametros de envío a api.
-            const urlCiudades = `https://apis.datos.gob.ar/georef/api/municipios?provincia=${provinciaId}&campos=id,nombre&max=100`
-            const respuesta = await axios.get(urlCiudades)
+            try {
+                //TODO: Validar parametros de envío a api.
+                const urlCiudades = `https://apis.datos.gob.ar/georef/api/municipios?provincia=${provinciaId}&campos=id,nombre&max=100`
+                const respuesta = await axios.get(urlCiudades)
 
-            setCiudades(respuesta.data.municipios)
+                setCiudades(respuesta.data.municipios)
+            } catch (error) {
+                if (error.response) {
+                    console.log("apiCiudades response error: ", error.response.data);
+                    console.log("apiCiudades response error: ", error.response.status);
+                    console.log("apiCiudades response error: ", error.response.headers);
+                } else if (error.request) {
+                    console.log("apiCiudades request error: ", error.request);
+                }
+            }
         }
         apiCiudades()
     }, [provinciaId])
 
     const handleChange = (e) => {
-        ciudades.map((ciudad) => {
-            if (ciudad.id === e.target.value) {
-                setCiudadNombre({
-                    ciudad: ciudad.nombre,
-                })
-            }
+        let ciudad = ciudades.filter(ciudad => ciudad.id === e.target.value)
+        setCiudadNombre({
+            ciudad: ciudad[0].nombre,
         })
     }
     //TODO: Deshabilitar select cuando provincia seleccionada sea Ciudad Autónoma de Buenos Aires (buscar ProvinciaId)
