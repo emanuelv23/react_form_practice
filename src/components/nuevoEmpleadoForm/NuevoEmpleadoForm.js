@@ -5,7 +5,7 @@ import InformacionBasica from "./InformacionBasica"
 import Ubicacion from "./Ubicacion"
 import CrearNuevoEmpleadoAction from "../../actions/datosEmpleadoAction"
 
-const DatosEmpleadoForm = () => {
+const NuevoEmpleadoForm = () => {
     const [informacionBasica, setInformacionBasica] = useState({
         nombre: "",
         apellido: "",
@@ -43,4 +43,4 @@ const DatosEmpleadoForm = () => {
     )
 }
 
-export default DatosEmpleadoForm
+export default NuevoEmpleadoForm

@@ -1,7 +1,7 @@
-import {DATOS_EMPLEADO, DATOS_EMPLEADO_EXITO, DATOS_EMPLEADO_ERROR} from "../types/types"
+import {NUEVO_EMPLEADO, NUEVO_EMPLEADO_EXITO, NUEVO_EMPLEADO_ERROR} from "../types/types"
 
 export default function CrearNuevoEmpleadoAction(empleado) {
-    return () => {
-        console.log("desde action:" , empleado)
+    return (dispatch) => {
+        dispatch(agregarProducto())
     }
 }
