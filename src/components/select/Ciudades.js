@@ -5,24 +5,28 @@ const Ciudades = ({provinciaId, setCiudadNombre}) => {
     const [ciudades, setCiudades] = useState([])
 
     useEffect( () => {
-        const apiCiudades = async () => {
-            try {
-                //TODO: Validar parametros de envío a api.
-                const urlCiudades = `https://apis.datos.gob.ar/georef/api/municipios?provincia=${provinciaId}&campos=id,nombre&max=100`
-                const respuesta = await axios.get(urlCiudades)
+        if (provinciaId !== "" && provinciaId !== null) {
+            const apiCiudades = async () => {
+                try {
+                    //TODO: Validar parametros de envío a api.
+                    const urlCiudades = `https://apis.datos.gob.ar/georef/api/municipios?provincia=${provinciaId}&campos=id,nombre&max=100`
+                    const respuesta = await axios.get(urlCiudades)
 
-                setCiudades(respuesta.data.municipios)
-            } catch (error) {
-                if (error.response) {
-                    console.log("apiCiudades response error: ", error.response.data);
-                    console.log("apiCiudades response error: ", error.response.status);
-                    console.log("apiCiudades response error: ", error.response.headers);
-                } else if (error.request) {
-                    console.log("apiCiudades request error: ", error.request);
+                    setCiudades(respuesta.data.municipios)
+                } catch (error) {
+                    if (error.response) {
+                        console.log("apiCiudades response error: ", error.response.data);
+                        console.log("apiCiudades response error: ", error.response.status);
+                        console.log("apiCiudades response error: ", error.response.headers);
+                    } else if (error.request) {
+                        console.log("apiCiudades request error: ", error.request);
+                    }
                 }
             }
+            apiCiudades()
         }
-        apiCiudades()
+
+
     }, [provinciaId])
 
     const handleChange = (e) => {
