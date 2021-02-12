@@ -25,8 +25,6 @@ const Ciudades = ({provinciaId, setCiudadNombre}) => {
             }
             apiCiudades()
         }
-
-
     }, [provinciaId])
 
     const handleChange = (e) => {
@@ -37,7 +35,7 @@ const Ciudades = ({provinciaId, setCiudadNombre}) => {
     }
     //TODO: Deshabilitar select cuando provincia seleccionada sea Ciudad Autónoma de Buenos Aires (buscar ProvinciaId)
     return (
-        <select onChange={handleChange}>
+        <select disabled onChange={handleChange}>
             {ciudades.map((ciudad) => (
                 <option key={ciudad.id} value={ciudad.id}>{ciudad.nombre}</option>
             ))}

@@ -1,20 +1,22 @@
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {Provider} from "react-redux";
-import NuevoEmpleadoForm from "./components/nuevoEmpleadoForm/NuevoEmpleadoForm";
-import TestUno from "./components/testUno/TestUno";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
+import Header from "./components/header/Header";
+import NuevoEmpleadoForm from "./components/nuevoEmpleado/NuevoEmpleadoForm";
+import MostrarEmpleados from "./components/mostrarEmpleados/MostrarEmpleados";
 import store from "./store/store";
 
 function App() {
   return (
-      <Provider store={store}>
-        <Router>
-          <Switch>
-              {/*<Route exact path="/" component={Home} />*/}
-              <Route exact path="/" component={NuevoEmpleadoForm} />
-              <Route exaxct path="/testuno" component={TestUno} />
-          </Switch>
-        </Router>
-      </Provider>
+    <Provider store={store}>
+      <Router>
+        <Header />
+        <Switch>
+          {/*<Route exact path="/" component={Home} />*/}
+          <Route exact path="/empleados/nuevo" component={NuevoEmpleadoForm} />
+          <Route exact path="/empleados/mostrar" component={MostrarEmpleados} />
+        </Switch>
+      </Router>
+    </Provider>
   );
 }
 

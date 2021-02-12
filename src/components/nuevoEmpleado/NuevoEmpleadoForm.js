@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import InformacionBasica from "./InformacionBasica"
 import Ubicacion from "./Ubicacion"
-import CrearNuevoEmpleadoAction from "../../actions/datosEmpleadoAction"
+import {CrearEmpleadoAction} from "../../actions/empleadoAction"
 
 const NuevoEmpleadoForm = () => {
     const [informacionBasica, setInformacionBasica] = useState({
@@ -19,26 +19,24 @@ const NuevoEmpleadoForm = () => {
 
     const dispatch = useDispatch()
 
-    const crearNuevoEmpleado = (empleado) => dispatch(CrearNuevoEmpleadoAction(empleado))
+    const crearEmpleado = (empleado) => dispatch(CrearEmpleadoAction(empleado))
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // esto lo puedo usar para enviar a la próxima pagina
-        //console.log({...informacionBasica, ...provinciaNombre, ...ciudadNombre})
-
-        crearNuevoEmpleado({...informacionBasica, ...provinciaNombre, ...ciudadNombre})
+        crearEmpleado({...informacionBasica, ...provinciaNombre, ...ciudadNombre})
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <InformacionBasica informacionBasica={informacionBasica} setInformacionBasica={setInformacionBasica} />
             <Ubicacion setProvinciaNombre={setProvinciaNombre} setCiudadNombre={setCiudadNombre}/>
-            <button type="submit" />{/*
-                <Link to={"/empleados"}>
+            <button type="submit" >
+                Crear
+                {/*<Link to={"/mostrarEmpleados"}>
                     Crear
-                </Link>
-            </button>*/}
+                </Link>*/}
+            </button>
         </form>
     )
 }
