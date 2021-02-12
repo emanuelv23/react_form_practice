@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles, Drawer, Divider } from "@material-ui/core";
-import AppBarLista from "../listas/AppBarLista";
+import EmpleadosLista from "../listas/EmpleadosLista";
 
 const styles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
@@ -13,7 +13,7 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-const ApplicationDrawer = (props) => {
+const Drawer = (props) => {
   const classes = styles();
 
   /*   const handleClose = () => {
@@ -35,9 +35,9 @@ const ApplicationDrawer = (props) => {
     >
       <div className={classes.toolbar}></div>
       <Divider />
-      <AppBarLista />
+      <EmpleadosLista />
     </Drawer>
   );
 };
 
-export default ApplicationDrawer;
+export default Drawer;

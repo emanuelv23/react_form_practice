@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles, Hidden } from "@material-ui/core";
-import ApplicationBar from "./ApplicationBar";
-import ApplicationDrawer from "./ApplicationDrawer";
+import NavBar from "./NavBar";
+import Drawer from "./Drawer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,16 +21,16 @@ const Header = () => {
 
   return (
     <div className={classes.root}>
-      <ApplicationBar onClick={handleDrawerToggle} />
+      <NavBar onClick={handleDrawerToggle} />
       <Hidden smUp>
-        <ApplicationDrawer
+        <Drawer
           variant="temporary"
           open={abrir}
           onClose={handleDrawerToggle}
         />
       </Hidden>
       <Hidden xsDown>
-        <ApplicationDrawer variant="permanent" open={true} />
+        <Drawer variant="permanent" open={true} />
       </Hidden>
     </div>
   );

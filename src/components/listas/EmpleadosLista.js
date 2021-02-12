@@ -9,7 +9,7 @@ import {
 import PersonAddSharpIcon from '@material-ui/icons/PersonAddSharp';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 
-const AppBarLista = () => {
+const EmpleadosLista = () => {
     return (
         <List component="nav">
             <ListItem Button="true">
@@ -28,4 +28,4 @@ const AppBarLista = () => {
     )
 }
 
-export default AppBarLista
+export default EmpleadosLista

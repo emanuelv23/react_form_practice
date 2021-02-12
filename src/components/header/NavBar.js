@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import AppBarLista from "../listas/AppBarLista";
+import EmpleadosLista from "../listas/EmpleadosLista";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ApplicationBar = (props) => {
+const NavBar = (props) => {
   const classes = useStyles();
 
   return (
@@ -54,4 +54,4 @@ const ApplicationBar = (props) => {
   );
 };
 
-export default ApplicationBar;
+export default NavBar;
