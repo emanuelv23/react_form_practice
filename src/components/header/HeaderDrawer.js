@@ -13,16 +13,8 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-const Drawer = (props) => {
+const HeaderDrawer = (props) => {
   const classes = styles();
-
-  /*   const handleClose = () => {
-    if (props.onClose) {
-      return props.onClose;
-    } else {
-      return null;
-    }
-  }; */
 
   return (
     <Drawer
@@ -40,4 +32,4 @@ const Drawer = (props) => {
   );
 };
 
-export default Drawer;
+export default HeaderDrawer;

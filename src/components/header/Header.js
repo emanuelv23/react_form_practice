@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles, Hidden } from "@material-ui/core";
-import NavBar from "./NavBar";
-import Drawer from "./Drawer";
+import HeaderNavBar from "./HeaderNavBar";
+import HeaderDrawer from "./HeaderDrawer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,16 +21,16 @@ const Header = () => {
 
   return (
     <div className={classes.root}>
-      <NavBar onClick={handleDrawerToggle} />
+      <HeaderNavBar onClick={handleDrawerToggle} />
       <Hidden smUp>
-        <Drawer
+        <HeaderDrawer
           variant="temporary"
           open={abrir}
           onClose={handleDrawerToggle}
         />
       </Hidden>
       <Hidden xsDown>
-        <Drawer variant="permanent" open={true} />
+        <HeaderDrawer variant="temporary" open={true} />
       </Hidden>
     </div>
   );

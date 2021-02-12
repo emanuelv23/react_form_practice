@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NavBar = (props) => {
+const HeaderNavBar = (props) => {
   const classes = useStyles();
 
   return (
@@ -54,4 +54,4 @@ const NavBar = (props) => {
   );
 };
 
-export default NavBar;
+export default HeaderNavBar;
