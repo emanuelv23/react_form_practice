@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { makeStyles, Hidden } from "@material-ui/core";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import HeaderNavBar from "./HeaderNavBar";
 import HeaderDrawer from "./HeaderDrawer";
 
@@ -7,31 +8,25 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  toolbar: theme.mixins.toolbar,
 }));
 
 const Header = () => {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
 
-  const [abrir, setAbrir] = useState(false);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
 
-  const handleDrawerToggle = () => {
-    setAbrir(!abrir);
+  const handleDrawerClose = () => {
+    setOpen(false);
   };
 
   return (
     <div className={classes.root}>
-      <HeaderNavBar onClick={handleDrawerToggle} />
-      <Hidden smUp>
-        <HeaderDrawer
-          variant="temporary"
-          open={abrir}
-          onClose={handleDrawerToggle}
-        />
-      </Hidden>
-      <Hidden xsDown>
-        <HeaderDrawer variant="temporary" open={true} />
-      </Hidden>
+      <CssBaseline />
+      <HeaderNavBar open={open} handleDrawerOpen={handleDrawerOpen} />
+      <HeaderDrawer open={open} handleDrawerClose={handleDrawerClose} />
     </div>
   );
 };

@@ -1,33 +1,56 @@
-import React from "react";
-import { makeStyles, Drawer, Divider } from "@material-ui/core";
-import EmpleadosLista from "../listas/EmpleadosLista";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import EmpleadosListaIconos from "../listasIconos/EmpleadosListaIconos";
 
-const styles = makeStyles((theme) => ({
-  toolbar: theme.mixins.toolbar,
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
   drawer: {
-    width: 240,
+    width: drawerWidth,
     flexShrink: 0,
   },
   drawerPaper: {
-    width: 240,
+    width: drawerWidth,
+  },
+  drawerHeader: {
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-end",
   },
 }));
 
 const HeaderDrawer = (props) => {
-  const classes = styles();
+  const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <Drawer
       className={classes.drawer}
-      classes={{ paper: classes.drawerPaper }}
+      variant="persistent"
       anchor="left"
-      variant={props.variant}
       open={props.open}
-      onClose={props.onClose}
+      classes={{
+        paper: classes.drawerPaper,
+      }}
     >
-      <div className={classes.toolbar}></div>
+      <div className={classes.drawerHeader}>
+        <IconButton onClick={props.handleDrawerClose}>
+          {theme.direction === "ltr" ? (
+            <ChevronLeftIcon />
+          ) : (
+            <ChevronRightIcon />
+          )}
+        </IconButton>
+      </div>
       <Divider />
-      <EmpleadosLista />
+      <EmpleadosListaIconos />
     </Drawer>
   );
 };

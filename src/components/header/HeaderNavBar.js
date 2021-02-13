@@ -1,31 +1,33 @@
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
-import EmpleadosLista from "../listas/EmpleadosLista";
+
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
+  appBar: {
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
-    },
   },
-  title: {
-    flexGrow: 1,
-  },
-  appBar: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${240}px)`,
-      marginLeft: 240,
-    },
+  hide: {
+    display: "none",
   },
 }));
 
@@ -33,24 +35,27 @@ const HeaderNavBar = (props) => {
   const classes = useStyles();
 
   return (
-    // <div className={classes.root}>
-    <AppBar position="fixed" className={classes.appBar}>
+    <AppBar
+      position="fixed"
+      className={clsx(classes.appBar, {
+        [classes.appBarShift]: props.open,
+      })}
+    >
       <Toolbar>
         <IconButton
           color="inherit"
-          aria-label="menu"
+          aria-label="open drawer"
+          onClick={props.handleDrawerOpen}
           edge="start"
-          className={classes.menuButton}
-          onClick={props.onClick}
+          className={clsx(classes.menuButton, props.open && classes.hide)}
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" className={classes.title}>
-          Gestión de Empleados
+        <Typography variant="h6" noWrap>
+          Gestión de empleados
         </Typography>
       </Toolbar>
     </AppBar>
-    // </div>
   );
 };
 
