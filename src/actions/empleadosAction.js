@@ -2,9 +2,9 @@ import {
   NUEVO_EMPLEADO,
   NUEVO_EMPLEADO_EXITO,
   NUEVO_EMPLEADO_ERROR,
-  MOSTRAR_EMPLEADOS,
-  MOSTRAR_EMPLEADOS_EXITO,
-  MOSTRAR_EMPLEADOS_ERROR,
+  VER_EMPLEADOS,
+  VER_EMPLEADOS_EXITO,
+  VER_EMPLEADOS_ERROR,
 } from "../types";
 
 const nuevoEmpleado = () => ({
@@ -21,7 +21,7 @@ const nuevoEmpleadoError = () => ({
   type: NUEVO_EMPLEADO_ERROR,
 });
 
-export function CrearEmpleadoAction(empleado) {
+export function NuevoEmpleadoAction(empleado) {
   return (dispatch) => {
     dispatch(nuevoEmpleado());
 
@@ -33,27 +33,27 @@ export function CrearEmpleadoAction(empleado) {
   };
 }
 
-const mostrarempleados = () => ({
-  type: MOSTRAR_EMPLEADOS,
+const verEmpleados = () => ({
+  type: VER_EMPLEADOS,
   payload: true,
 });
 
-const mostrarEmpleadosExito = () => ({
-  type: MOSTRAR_EMPLEADOS_EXITO,
+const verEmpleadosExito = () => ({
+  type: VER_EMPLEADOS_EXITO,
 });
 
-const mostrarEmpleadosError = () => ({
-  type: MOSTRAR_EMPLEADOS_ERROR,
+const verEmpleadosError = () => ({
+  type: VER_EMPLEADOS_ERROR,
 });
 
-export function MostrarEmpleadosAction() {
+export function VerEmpleadosAction() {
   return (dispatch) => {
-    dispatch(mostrarempleados());
+    dispatch(verEmpleados());
 
     try {
-      dispatch(mostrarEmpleadosExito());
+      dispatch(verEmpleadosExito());
     } catch (error) {
-      dispatch(mostrarEmpleadosError());
+      dispatch(verEmpleadosError());
     }
   };
 }

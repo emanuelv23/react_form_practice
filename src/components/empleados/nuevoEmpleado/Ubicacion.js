@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react'
-import Provincias from "../select/Provincias"
-import Ciudades from "../select/Ciudades"
+import Provincias from "../../select/Provincias"
+import Ciudades from "../../select/Ciudades"
 
 const Ubicacion = ({setProvinciaNombre, setCiudadNombre}) => {
     const [provinciaId, setProvinciaId] = useState("")

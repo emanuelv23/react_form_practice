@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Empleado from "./Empleado";
-import { VerEmpleadosAction } from "../../actions/empleadosAction";
+import { VerEmpleadosAction } from "../../../actions/empleadosAction";
 
-const MostrarEmpleados = () => {
+const VerEmpleados = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const MostrarEmpleados = () => {
     mostrarEmpleados();
   }, []);
 
-  const empleados = useSelector((state) => state.datosEmpleado.empleados);
+  const empleados = useSelector((state) => state.empleados.empleados);
   console.log(empleados);
 
   return (
@@ -24,15 +24,15 @@ const MostrarEmpleados = () => {
           <th>Pais</th>
         </tr>
       </thead>
-      {/*       <tbody>
+      <tbody>
         {empleados.length === 0
-          ? "no hay productos"
+          ? "no hay empleados"
           : empleados.map((empleado) => (
               <Empleado key={empleado.apellido} empleado={empleado} />
             ))}
-      </tbody> */}
+      </tbody>
     </table>
   );
 };
 
-export default MostrarEmpleados;
+export default VerEmpleados;

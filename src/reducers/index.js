@@ -1,6 +1,6 @@
-import {combineReducers} from "redux";
-import datosEmpleadoReducer from "./datosEmpleadoReducer";
+import { combineReducers } from "redux";
+import empleadosReducer from "./empleadosReducer";
 
 export default combineReducers({
-    datosEmpleado: datosEmpleadoReducer,
-})
+  empleados: empleadosReducer,
+});

@@ -2,9 +2,9 @@ import {
   NUEVO_EMPLEADO,
   NUEVO_EMPLEADO_EXITO,
   NUEVO_EMPLEADO_ERROR,
-  MOSTRAR_EMPLEADOS,
-  MOSTRAR_EMPLEADOS_EXITO,
-  MOSTRAR_EMPLEADOS_ERROR,
+  VER_EMPLEADOS,
+  VER_EMPLEADOS_EXITO,
+  VER_EMPLEADOS_ERROR,
 } from "../types";
 
 const initialState = {
@@ -15,7 +15,6 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  console.log("entra reducer");
   switch (action.type) {
     case NUEVO_EMPLEADO:
       return {
@@ -27,15 +26,15 @@ export default function (state = initialState, action) {
         ...state,
         empleados: [...state.empleados, action.payload],
       };
-    case MOSTRAR_EMPLEADOS:
+    case VER_EMPLEADOS:
       return {
         ...state,
         loading: true,
       };
-    case MOSTRAR_EMPLEADOS_EXITO:
+    case VER_EMPLEADOS_EXITO:
       return {
         ...state,
-        productos: state.productos,
+        empleados: state.empleados,
       };
     default:
       return state;
