@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import InformacionBasica from "./InformacionBasica"
 import Ubicacion from "./Ubicacion"
-import {CrearEmpleadoAction} from "../../actions/empleadoAction"
+import {NuevoEmpleadoAction} from "../../actions/empleadosAction"
 
 const NuevoEmpleadoForm = () => {
     const [informacionBasica, setInformacionBasica] = useState({
@@ -19,7 +19,7 @@ const NuevoEmpleadoForm = () => {
 
     const dispatch = useDispatch()
 
-    const crearEmpleado = (empleado) => dispatch(CrearEmpleadoAction(empleado))
+    const crearEmpleado = (empleado) => dispatch(NuevoEmpleadoAction(empleado))
 
     const handleSubmit = (e) => {
         e.preventDefault();
