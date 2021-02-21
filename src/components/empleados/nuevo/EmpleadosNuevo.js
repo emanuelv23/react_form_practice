@@ -1,14 +1,19 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
 import InformacionBasica from "./InformacionBasica"
 import Ubicacion from "./Ubicacion"
 import {NuevoEmpleadoAction} from "../../../actions/empleadosAction"
+import Contacto from "./Contacto";
 
-const NuevoEmpleado = () => {
+const EmpleadosNuevo = () => {
     const [informacionBasica, setInformacionBasica] = useState({
         nombre: "",
         apellido: "",
+        fechaNacimiento: "",
+    })
+    const [contacto, setContacto] = useState({
+        movil: "",
+        email: "",
     })
     const [provinciaNombre, setProvinciaNombre] = useState({
         provincia: "",
@@ -17,28 +22,29 @@ const NuevoEmpleado = () => {
         ciudad: "",
     })
 
+    const [domicilio, setDomicilio] = useState({
+        calle: "",
+        numero: "",
+    })
+
     const dispatch = useDispatch()
 
     const crearEmpleado = (empleado) => dispatch(NuevoEmpleadoAction(empleado))
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        crearEmpleado({...informacionBasica, ...provinciaNombre, ...ciudadNombre})
+        console.log({...informacionBasica, ...contacto, ...domicilio, ...provinciaNombre, ...ciudadNombre})
+        crearEmpleado({...informacionBasica, ...contacto, ...domicilio, ...provinciaNombre, ...ciudadNombre})
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <InformacionBasica informacionBasica={informacionBasica} setInformacionBasica={setInformacionBasica} />
-            <Ubicacion setProvinciaNombre={setProvinciaNombre} setCiudadNombre={setCiudadNombre}/>
-            <button type="submit" >
-                Crear
-                {/*<Link to={"/verEmpleados"}>
-                    Crear
-                </Link>*/}
-            </button>
+            <Contacto contacto={contacto} setContacto={setContacto}/>
+            <Ubicacion setProvinciaNombre={setProvinciaNombre} setCiudadNombre={setCiudadNombre} domicilio={domicilio} setDomicilio={setDomicilio} />
+            <button type="submit" >Crear</button>
         </form>
     )
 }
 
-export default NuevoEmpleado
+export default EmpleadosNuevo

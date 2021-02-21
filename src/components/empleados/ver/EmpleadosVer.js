@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Empleado from "./Empleado";
 import { VerEmpleadosAction } from "../../../actions/empleadosAction";
 
-const VerEmpleados = () => {
+const EmpleadosVer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,4 +35,4 @@ const VerEmpleados = () => {
   );
 };
 
-export default VerEmpleados;
+export default EmpleadosVer;

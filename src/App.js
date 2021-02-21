@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import Header from "./components/header/Header";
-import NuevoEmpleado from "./components/empleados/nuevoEmpleado/NuevoEmpleado";
-import VerEmpleados from "./components/empleados/verEmpleados/VerEmpleados";
+import EmpleadosNuevo from "./components/empleados/nuevo/EmpleadosNuevo";
+import EmpleadosVer from "./components/empleados/ver/EmpleadosVer";
 import store from "./store/store";
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
         {/* <Header /> */}
         <Switch>
           {/*<Route exact path="/" component={Home} />*/}
-          <Route exact path="/empleados/nuevo" component={NuevoEmpleado} />
-          <Route exact path="/empleados/ver" component={VerEmpleados} />
+          <Route exact path="/empleados/nuevo" component={EmpleadosNuevo} />
+          <Route exact path="/empleados/ver" component={EmpleadosVer} />
         </Switch>
       </Router>
     </Provider>
