@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import ordenAlfabeticoAscendente from "../../utils/ordenAlfabeticoAscendente";
 
 const Provincias = ({setProvinciaId, setProvinciaNombre}) => {
     const [provincias, setProvincias] = useState([])
@@ -8,9 +9,9 @@ const Provincias = ({setProvinciaId, setProvinciaNombre}) => {
         const apiProvincias = async () => {
             try {
                 const urlProvincias = "https://apis.datos.gob.ar/georef/api/provincias"
-                let response = await axios.get(urlProvincias)
+                const respuesta = await axios.get(urlProvincias);
 
-                setProvincias(response.data.provincias);
+                setProvincias(respuesta.data.provincias.sort(ordenAlfabeticoAscendente("nombre")));
             } catch (error) {
                 if (error.response) {
                     console.log("apiProvincias response error: ", error.response.data);

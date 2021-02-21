@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ordenAlfabeticoAscendente from "../../utils/ordenAlfabeticoAscendente";
 
 const Ciudades = ({ provinciaId, setCiudadNombre }) => {
   const [ciudades, setCiudades] = useState([]);
@@ -14,7 +15,7 @@ const Ciudades = ({ provinciaId, setCiudadNombre }) => {
           const urlCiudades = `https://apis.datos.gob.ar/georef/api/municipios?provincia=${provinciaId}&campos=id,nombre&max=${maximoCiudades}`;
           const respuesta = await axios.get(urlCiudades);
 
-          setCiudades(respuesta.data.municipios);
+          setCiudades(respuesta.data.municipios.sort(ordenAlfabeticoAscendente("nombre")));
         } catch (error) {
           if (error.response) {
             console.log("apiCiudades response error: ", error.response.data);
