@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import InformacionBasica from "./InformacionBasica"
-import Ubicacion from "./Ubicacion"
 import {NuevoEmpleadoAction} from "../../../actions/empleadosAction"
-import Contacto from "./Contacto";
+import InformacionBasica from "./InformacionBasica"
+import Contacto from "../../contacto/Contacto";
+import Ubicacion from "./Ubicacion"
 
 const EmpleadosNuevo = () => {
     const [informacionBasica, setInformacionBasica] = useState({
@@ -15,6 +15,10 @@ const EmpleadosNuevo = () => {
         movil: "",
         email: "",
     })
+    const [domicilio, setDomicilio] = useState({
+        calle: "",
+        numero: "",
+    })
     const [provinciaNombre, setProvinciaNombre] = useState({
         provincia: "",
     })
@@ -22,10 +26,10 @@ const EmpleadosNuevo = () => {
         ciudad: "",
     })
 
-    const [domicilio, setDomicilio] = useState({
-        calle: "",
-        numero: "",
-    })
+    const [err, setErr] = useState({
+        err: false,
+        message: ""
+    });
 
     const dispatch = useDispatch()
 
@@ -33,7 +37,19 @@ const EmpleadosNuevo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({...informacionBasica, ...contacto, ...domicilio, ...provinciaNombre, ...ciudadNombre})
+
+        setErr({
+            err: false,
+            message: ""
+        })
+
+        if (informacionBasica.nombre.trim().length === 0 || informacionBasica.apellido.trim().length === 0) {
+            setErr({
+                err: true,
+                message: "Nombre y apellido son requeridos",
+            })
+        }
+
         crearEmpleado({...informacionBasica, ...contacto, ...domicilio, ...provinciaNombre, ...ciudadNombre})
     }
 
@@ -43,6 +59,7 @@ const EmpleadosNuevo = () => {
             <Contacto contacto={contacto} setContacto={setContacto}/>
             <Ubicacion setProvinciaNombre={setProvinciaNombre} setCiudadNombre={setCiudadNombre} domicilio={domicilio} setDomicilio={setDomicilio} />
             <button type="submit" >Crear</button>
+            {err.err ? <p>{err.message}</p> : null}
         </form>
     )
 }

@@ -41,7 +41,7 @@ const Ciudades = ({ provinciaId, setCiudadNombre }) => {
   if (provinciaId === "02") {
     return (
         <select disabled onChange={handleChange}>
-          <option selected disabled>Ciudades</option>
+          <option value disabled>Ciudades</option>
           {ciudades.map((ciudad) => (
               <option key={ciudad.id} value={ciudad.id}>
                 {ciudad.nombre}

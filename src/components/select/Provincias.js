@@ -38,7 +38,7 @@ const Provincias = ({setProvinciaId, setProvinciaNombre}) => {
 
     return (
         <select onChange={handleChange}>
-            <option selected disabled>Provincias</option>
+            <option value disabled>Provincias</option>
             {provincias.map((provincia) => (
                 <option key={provincia.id} value={provincia.id}>{provincia.nombre}</option>
             ))}

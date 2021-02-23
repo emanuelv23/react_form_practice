@@ -14,7 +14,7 @@ const EmpleadosListaIconos = (props) => {
     {
       text: "Ver",
       icon: <PeopleOutlineIcon />,
-      onClick: () => props.history.push("/empleados/mostrar"),
+      onClick: () => props.history.push("/empleados/ver"),
     },
   ];
   const linkToSection = () => {

@@ -9,7 +9,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        {/* <Header /> */}
+        <Header />
         <Switch>
           {/*<Route exact path="/" component={Home} />*/}
           <Route exact path="/empleados/nuevo" component={EmpleadosNuevo} />

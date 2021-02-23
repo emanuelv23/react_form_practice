@@ -1,7 +1,7 @@
 import React from "react";
 
 const empleado = ({ empleado }) => {
-  const [apellido, nombre, provincia, pais] = empleado;
+  const {apellido, nombre, provincia, pais} = empleado;
   return (
     <tr>
       <td>{apellido}</td>
