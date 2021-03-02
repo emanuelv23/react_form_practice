@@ -12,7 +12,6 @@ const EmpleadosVer = () => {
   }, []);
 
   const empleados = useSelector((state) => state.empleados.empleados);
-  console.log(empleados)
 
   return (
       <Fragment>

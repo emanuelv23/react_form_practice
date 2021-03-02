@@ -6,6 +6,7 @@ import {
   VER_EMPLEADOS_EXITO,
   VER_EMPLEADOS_ERROR,
 } from "../types";
+import {db} from "../firebase"
 
 const nuevoEmpleado = () => ({
   type: NUEVO_EMPLEADO,
@@ -21,15 +22,19 @@ const nuevoEmpleadoError = () => ({
   type: NUEVO_EMPLEADO_ERROR,
 });
 
-export function NuevoEmpleadoAction(empleado) {
+export function NuevoEmpleadoAction(nuevo) {
   return (dispatch) => {
-    dispatch(nuevoEmpleado());
+    dispatch(nuevoEmpleado())
 
-    try {
-      dispatch(nuevoEmpleadoExito(empleado));
-    } catch (error) {
-      dispatch(nuevoEmpleadoError());
-    }
+    db
+        .collection("empleados")
+        .add(nuevo)
+        .then((docRef) => {
+          dispatch(nuevoEmpleadoExito())
+        })
+        .catch((error) => {
+          dispatch(nuevoEmpleadoError())
+        })
   };
 }
 
@@ -38,9 +43,13 @@ const verEmpleados = () => ({
   payload: true,
 });
 
-const verEmpleadosExito = () => ({
-  type: VER_EMPLEADOS_EXITO,
-});
+const verEmpleadosExito = (empleados) => {
+  console.log("verEmpleadosExito", empleados)
+  return ({
+    type: VER_EMPLEADOS_EXITO,
+    payload: empleados,
+  })
+}
 
 const verEmpleadosError = () => ({
   type: VER_EMPLEADOS_ERROR,
@@ -50,10 +59,24 @@ export function VerEmpleadosAction() {
   return (dispatch) => {
     dispatch(verEmpleados());
 
-    try {
-      dispatch(verEmpleadosExito());
-    } catch (error) {
-      dispatch(verEmpleadosError());
-    }
+    db
+        .collection("empleados")
+        .get()
+        .then(docs => {
+
+          if (docs.empty) {
+            console.log("no hay documentos en esta colección")
+          } else {
+            let empleados = []
+            docs.forEach(doc => {
+              empleados.push(doc.data())
+            })
+            dispatch(verEmpleadosExito(empleados))
+          }
+        })
+        .catch(error => {
+          dispatch(verEmpleadosError())
+          console.log("Error al traer documentos", error)
+        })
   };
 }

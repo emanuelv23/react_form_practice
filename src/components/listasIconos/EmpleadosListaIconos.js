@@ -35,7 +35,7 @@ const EmpleadosListaIconos = (props) => {
         <ListItemText primary="Todos" />
       </ListItem> */}
       {listItems.map((item) => (
-        <ListItem Button key={item.text} onClick={item.onClick}>
+        <ListItem button key={item.text} onClick={item.onClick}>
           <ListItemIcon>{item.icon}</ListItemIcon>
           <ListItemText primary={item.text} />
         </ListItem>

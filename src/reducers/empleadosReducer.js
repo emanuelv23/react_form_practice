@@ -26,6 +26,10 @@ export default function (state = initialState, action) {
         ...state,
         empleados: [...state.empleados, action.payload],
       };
+    case NUEVO_EMPLEADO_ERROR:
+      return {
+        error: true,
+      }
     case VER_EMPLEADOS:
       return {
         ...state,
@@ -34,7 +38,9 @@ export default function (state = initialState, action) {
     case VER_EMPLEADOS_EXITO:
       return {
         ...state,
-        empleados: state.empleados,
+        loading: false,
+        error: null,
+        empleados: action.payload,
       };
     default:
       return state;
