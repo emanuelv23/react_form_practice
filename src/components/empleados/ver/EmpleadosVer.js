@@ -23,13 +23,12 @@ const EmpleadosVer = () => {
                     <th>Nombre</th>
                     <th>Provincia</th>
                     <th>Pais</th>
+                    <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {empleados.length === 0
-                    ? "no hay empleados"
-                    : empleados.map((empleado) => (
-                    <Empleado key={empleado.apellido} empleado={empleado} />
+                    {empleados.map((empleado) => (
+                    <Empleado key={empleado.key} empleado={empleado} />
                     ))}
                 </tbody>
             </table>
